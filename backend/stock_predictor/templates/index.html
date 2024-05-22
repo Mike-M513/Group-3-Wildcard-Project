@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Price Predictor</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Stock Price Predictor</h1>
+    <form method="post" action="/predict/">
+        {% csrf_token %}
+        <label for="symbol">Stock Symbol:</label>
+        <input type="text" id="symbol" name="symbol">
+        <button type="submit">Predict</button>
+    </form>
+    {% if result %}
+        <h2>Prediction Results for {{ symbol }}</h2>
+        <table>
+            <tr>
+                <th>Yesterday's Close</th>
+                <th>Today's Close</th>
+                <th>Tomorrow's Prediction</th>
+                <th>Action</th>
+                <th>Prediction Accuracy</th>
+            </tr>
+            <tr>
+                <td>{{ result.yesterday_close }}</td>
+                <td>{{ result.today_close }}</td>
+                <td>{{ result.tomorrow_prediction }}</td>
+                <td>{{ result.action }}</td>
+                <td>{{ result.prediction_accuracy }}%</td>
+            </tr>
+        </table>
+    {% endif %}
+</body>
+</html>
+
+
+
+
