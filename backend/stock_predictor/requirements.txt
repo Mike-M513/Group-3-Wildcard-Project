@@ -1,0 +1,6 @@
+Django
+yfinance
+pandas
+numpy
+scikit-learn
+torch
